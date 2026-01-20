@@ -1,3 +1,4 @@
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
@@ -114,9 +115,14 @@ const authSlice = createSlice({
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true
       }).addCase(loginUser.fulfilled, (state, action) => {
+
         state.isLoading = false;
-        state.user = action.payload.success ? action.payload.user : null;
-        state.isAuthenticated = action.payload.success;
+        const success = action.payload?.success ?? false;
+        state.user = success ? action.payload.user : null;
+        state.isAuthenticated = success;
+        // state.isLoading = false;
+        // state.user = action.payload.success ? action.payload.user : null;
+        // state.isAuthenticated = action.payload.success;
       }).addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.user = null;
@@ -125,9 +131,16 @@ const authSlice = createSlice({
       .addCase(checkAuth.pending, (state) => {
         state.isLoading = true
       }).addCase(checkAuth.fulfilled, (state, action) => {
+
+
         state.isLoading = false;
-        state.user = action.payload.success ? action.payload.user : null;
-        state.isAuthenticated = action.payload.success;
+        const success = action.payload?.success ?? false;
+        state.user = success ? action.payload.user : null;
+        state.isAuthenticated = success;
+
+        // state.isLoading = false;
+        // state.user = action.payload.success ? action.payload.user : null;
+        // state.isAuthenticated = action.payload.success;
       }).addCase(checkAuth.rejected, (state, action) => {
         state.isLoading = false;
         state.user = null;

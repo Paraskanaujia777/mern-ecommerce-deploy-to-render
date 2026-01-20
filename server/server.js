@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -45,5 +45,10 @@ app.use("/api/shop/cart" , shopCartRouter);
 app.use("/api/shop/address" , shopAddressRouter);
 
 app.listen(PORT , ()=> console.log(`Server is running on ${PORT}`))
+
+console.log("PORT =", process.env.PORT);
+console.log("CLIENT_URL =", process.env.CLIENT_URL);
+console.log("MONGO_URL =", process.env.MONGO_URL);
+
 
 
