@@ -30,7 +30,8 @@ function App() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      dispatch(checkAuth())
+      const token = JSON.parse(sessionStorage.getItem('token'))
+      dispatch(checkAuth(token))
     
 
   }}, [dispatch])
@@ -42,7 +43,7 @@ function App() {
     <>
       <div className="flex w-full flex-col overflow-hidden bg-red">
         <Routes>
-
+    
           
 
           <Route path="/" element={
